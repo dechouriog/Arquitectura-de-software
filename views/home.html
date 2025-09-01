@@ -1,10 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Página de inicio</title>
+    <meta charset="UTF-8">
+    <title>Libros</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; }
+        th { background-color: #f4f4f4; text-align: left; }
+        img { max-width: 100px; }
+        .descripcion { max-width: 300px; word-wrap: break-word; }
+    </style>
 </head>
 <body>
-    <h1>Bienvenido a FastAPI</h1>
-    <p>Esta es tu primera vista renderizada en html</p>
+    <h1>Lista de Libros</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ISBN13</th>
+                <th>Autor</th>
+                <th>Formato</th>
+                <th>Descripción</th>
+                <th>Género</th>
+                <th>Imagen</th>
+                <th>ISBN</th>
+                <th>Link</th>
+                <th>Páginas</th>
+                <th>Rating</th>
+                <th>Reviews</th>
+                <th>Título</th>
+                <th>Total Ratings</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in libros %} 
+            <tr>
+                <td>{{ book.id }}</td>
+                <td>{{ book.isbn13 }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.bookformat }}</td>
+                <td>{{ book.description }}</td>
+                <td>{{ book.genre }}</td>
+                <td>
+                    {% if book.img %}
+                        <img src="{{ book.img }}" alt="Portada">
+                    {% else %}
+                        No disponible
+                    {% endif %}
+                </td>
+                <td>{{ book.isbn }}</td>
+                <td>
+                    {% if book.link %}
+                        <a href="{{ book.link }}" target="_blank">Ver más</a>
+                    {% else %}
+                        No disponible
+                    {% endif %}
+                </td>
+                <td>{{ book.pages }}</td>
+                <td>{{ book.rating }}</td>
+                <td>{{ book.reviews }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.totalratings }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>
